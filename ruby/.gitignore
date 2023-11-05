@@ -1,0 +1,14 @@
+# Ruby
+/.bundle/
+/vendor/bundle
+*.gem
+*.rbc
+/.config
+/coverage/
+/Gemfile.lock
+/*.gemspec
+/bin/
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/log/
+/tmp/

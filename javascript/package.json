@@ -1,0 +1,17 @@
+{
+  "name": "javascript-oauth-example",
+  "version": "1.0.0",
+  "description": "JavaScript example to fetch an access token using OAuth2",
+  "main": "getToken.js",
+  "scripts": {
+    "test": "dotenv -e .env jest"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "simple-oauth2": "^4.1.0"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.3.0",
+    "jest": "^26.6.3"
+  }
+}

@@ -1,0 +1,30 @@
+# .NET
+bin/
+obj/
+*.user
+*.userprefs
+*.suo
+*.cache
+*.csproj
+*.vbproj
+*.snk
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/[Pp]ackages/ReSharper/
+# NuGet v3's project.json files produces more ignorable files
+*.nuget.props
+*.nuget.targets
+# Microsoft Visual Studio cache files
+.vs/
+# MSTest test Results
+TestResults
+# NUnit
+*.VisualState.xml
+TestResult.xml
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
