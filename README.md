@@ -67,5 +67,4 @@ This project is licensed under the [MIT License](./LICENSE).
 
 Happy coding!
 
-*This README is a starting point and should be updated with specific information about your project as it evolves.*
 
