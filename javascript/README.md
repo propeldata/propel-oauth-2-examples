@@ -8,8 +8,10 @@ To install the dependencies, run the following command:
 
 ```bash
 npm install
+```
 
 ## Fetch an access token
 
 ```bash
 npm test
+```
