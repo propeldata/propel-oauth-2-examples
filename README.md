@@ -38,13 +38,13 @@ Before running any code, make sure you have the following:
 
 For detailed instructions on how to run each language example, please refer to the respective `README.md` files:
 
-- [JavaScript README](./JavaScript/README.md)
-- [TypeScript README](./TypeScript/README.md)
-- [Python README](./Python/README.md)
-- [Golang README](./Golang/README.md)
-- [DotNet README](./DotNet/README.md)
-- [Rust README](./Rust/README.md)
-- [Ruby README](./Ruby/README.md)
+- [JavaScript README](./javascript/README.md)
+- [TypeScript README](./typescript/README.md)
+- [Python README](./python/README.md)
+- [Golang README](./goland/README.md)
+- [DotNet README](./dotnet/README.md)
+- [Rust README](./rust/README.md)
+- [Ruby README](./ruby/README.md)
 
 ## Contributing
 
