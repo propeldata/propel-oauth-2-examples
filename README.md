@@ -8,13 +8,13 @@ The project is organized into multiple directories, each corresponding to a spec
 
 Here's what you can expect in each directory:
 
-- `/JavaScript`: Contains JavaScript example using `simple-oauth2`.
-- `/TypeScript`: Contains TypeScript example using `simple-oauth2`.
-- `/Python`: Contains Python example using `requests-oauthlib`.
-- `/Golang`: Contains Go example using `golang.org/x/oauth2`.
-- `/DotNet`: Contains .NET example using `IdentityModel`.
-- `/Rust`: Contains Rust example using `reqwest`.
-- `/Ruby`: Contains Ruby example using `oauth2`.
+- `/javascript`: Contains JavaScript example using `simple-oauth2`.
+- `/typescript`: Contains TypeScript example using `simple-oauth2`.
+- `/python`: Contains Python example using `requests-oauthlib`.
+- `/golang`: Contains Go example using `golang.org/x/oauth2`.
+- `/dotnet`: Contains .NET example using `IdentityModel`.
+- `/rust`: Contains Rust example using `reqwest`.
+- `/ruby`: Contains Ruby example using `oauth2`.
 
 Each directory has its own `README.md` file with detailed instructions on setting up the environment, installing dependencies, and running the tests.
 
