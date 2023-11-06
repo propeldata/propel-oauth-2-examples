@@ -1,10 +1,10 @@
 
-### Python `README.md`
+# Python Propel OAuth Example
 
-```markdown
-# Python OAuth Example
+This directory contains the Python example for fetching a Propel access token using OAuth2.
 
-This directory contains the Python example for fetching an access token using OAuth2.
+## Environment
+Fill out the .env.example with the correct values and copy to .env
 
 ## Installation
 
@@ -14,5 +14,10 @@ Install the required packages using pip:
 python -m venv venv
 . venv/bin/activate
 pip install -r requirements.txt
+```
 
+## Fetch an access token
+
+```bash
 python -m unittest
+```

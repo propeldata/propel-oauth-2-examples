@@ -1,6 +1,6 @@
 # JavaScript OAuth Example
 
-This directory contains the JavaScript example for fetching an access token using OAuth2.
+This directory contains the JavaScript example for fetching a Propel access token using OAuth2.
 
 ## Installation
 

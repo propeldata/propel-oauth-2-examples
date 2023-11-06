@@ -31,6 +31,8 @@ namespace PropelOAuthExampleTests
                 clientSecret
             );
 
+            Console.WriteLine($"Token: {token}");
+
             // Assert
             Assert.NotNull(token);
         }

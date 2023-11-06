@@ -1,10 +1,7 @@
 
-### Ruby `README.md`
+# Ruby Propel OAuth Example
 
-```markdown
-# Ruby OAuth Example
-
-This directory contains the Ruby example for fetching an access token using OAuth2.
+This directory contains the Ruby example for fetching a Propel access token using OAuth2.
 
 ## Environment
 Fill out the .env.example with the correct values and copy to .env
@@ -17,9 +14,11 @@ First, install Bundler if you haven't already:
 gem install bundler
 
 bundle install
+```
 
+## Fetch an access token
+
+```bash
 cd lib
-
 ruby token_fetcher.rb
-
-
+```
