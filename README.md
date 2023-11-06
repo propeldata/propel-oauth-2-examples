@@ -15,6 +15,7 @@ Here's what you can expect in each directory:
 - `/dotnet`: Contains .NET example using `IdentityModel`.
 - `/rust`: Contains Rust example using `reqwest`.
 - `/ruby`: Contains Ruby example using `oauth2`.
+- `/java`: Contains Java example using `scribejava-core`.
 
 Each directory has its own `README.md` file with detailed instructions on setting up the environment, installing dependencies, and running the tests.
 
@@ -45,6 +46,7 @@ For detailed instructions on how to run each language example, please refer to t
 - [DotNet README](./dotnet/README.md)
 - [Rust README](./rust/README.md)
 - [Ruby README](./ruby/README.md)
+- [Java README](./java/README.md)
 
 ## Contributing
 
