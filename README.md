@@ -62,11 +62,10 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ## Acknowledgments
 
-- Thanks to all the contributors who have helped with the development and maintenance of this project.
-- Special thanks to [Propel](#) for providing the OAuth service we're interfacing with.
+- Thanks to all of our customers who want to empower _their_ customers with better access to data!
 
 ---
 
-Happy coding!
+Made with 💜. Powered by [Propel](https://www.propeldata.com)! 🚀
 
 
