@@ -19,6 +19,5 @@ bundle install
 ## Fetch an access token
 
 ```bash
-cd lib
 ruby token_fetcher.rb
 ```
