@@ -3,6 +3,12 @@ name: check-pull-request
 on:
   pull_request:
 
+env:
+  CLIENT_ID: ${{ secrets.CLIENT_ID }}
+  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+  TOKEN_HOST: https://auth.us-east-2.propeldata.com
+  TOKEN_PATH: /oauth2/token
+
 jobs:
   javascript:
     name: Lint and Test JavaScript
@@ -12,6 +18,14 @@ jobs:
         node-version: [ '18.x', '20.x' ]
     steps:
       - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          cd ./javascript
+          touch .env
+          echo CLIENT_ID=dummy >> .env
+          echo CLIENT_SECRET=dummy >> .env
+          echo TOKEN_HOST=dummy >> .env
+          echo TOKEN_PATH=dummy >> .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -30,6 +44,14 @@ jobs:
         node-version: [ '18.x', '20.x' ]
     steps:
       - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          cd ./typescript
+          touch .env
+          echo CLIENT_ID=dummy >> .env
+          echo CLIENT_SECRET=dummy >> .env
+          echo TOKEN_HOST=dummy >> .env
+          echo TOKEN_PATH=dummy >> .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -49,6 +71,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          cd ./python
+          touch .env
+          echo CLIENT_ID=dummy >> .env
+          echo CLIENT_SECRET=dummy >> .env
+          echo TOKEN_HOST=dummy >> .env
+          echo TOKEN_PATH=dummy >> .env
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
@@ -69,6 +99,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          cd ./golang
+          touch .env
+          echo CLIENT_ID=dummy >> .env
+          echo CLIENT_SECRET=dummy >> .env
+          echo TOKEN_HOST=dummy >> .env
+          echo TOKEN_PATH=dummy >> .env
       - name: Setup Go ${{ matrix.go-version }}
         uses: actions/setup-go@v4
         with:
@@ -91,12 +129,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          cd ./dotnet/PropelOAuthExampleApp
+          touch .env
+          echo CLIENT_ID=dummy >> .env
+          echo CLIENT_SECRET=dummy >> .env
+          echo TOKEN_HOST=dummy >> .env
+          echo TOKEN_PATH=dummy >> .env
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.x'  # Use the version of .NET that your project uses
       - run: | 
-          cd ./dotnet
+          cd ./dotnet/PropelOAuthExampleApp
           dotnet restore
           dotnet build
           dotnet tool install -g dotnet-format
