@@ -12,6 +12,7 @@ env:
 jobs:
   javascript:
     name: Lint and Test JavaScript
+    working-directory: ./javascript
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -20,7 +21,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generate .env file
         run: |
-          cd ./javascript
           touch .env
           echo CLIENT_ID=dummy >> .env
           echo CLIENT_SECRET=dummy >> .env
@@ -31,13 +31,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: | 
-          cd ./javascript
           npm install
           npm run lint
           npm test
 
   typescript:
     name: Lint and Test TypeScript
+    working-directory: ./typescript
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -46,7 +46,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generate .env file
         run: |
-          cd ./typescript
           touch .env
           echo CLIENT_ID=dummy >> .env
           echo CLIENT_SECRET=dummy >> .env
@@ -57,13 +56,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: | 
-          cd ./typescript
           npm install
           npm run lint  # Your package.json should define a "lint" script for TypeScript
           npm test
 
   python:
     name: Lint and Test Python
+    working-directory: ./python
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -73,7 +72,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generate .env file
         run: |
-          cd ./python
           touch .env
           echo CLIENT_ID=dummy >> .env
           echo CLIENT_SECRET=dummy >> .env
@@ -83,8 +81,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - run: | 
-          cd ./python
+      - run: |
           pip install flake8 pytest
           pip install -r requirements.txt
           flake8 .
@@ -92,6 +89,7 @@ jobs:
 
   golang:
     name: Lint and Test Go
+    working-directory: ./golang
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -101,7 +99,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generate .env file
         run: |
-          cd ./golang
           touch .env
           echo CLIENT_ID=dummy >> .env
           echo CLIENT_SECRET=dummy >> .env
@@ -113,25 +110,25 @@ jobs:
           go-version: ${{ matrix.go-version }}
           cache: false
       - run: | 
-          cd ./golang
           go get -v -t -d ./...
           go build -v ./...
       - name: Run Linter
+        working-directory: ./golang
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
       - run: |
-          cd ./golang
           go test -v ./...
 
   dotnet:
     name: Lint and Test .NET
+    working-directory: ./dotnet
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Generate .env file
         run: |
-          cd ./dotnet/PropelOAuthExampleApp
+          cd ./PropelOAuthExampleApp
           touch .env
           echo CLIENT_ID=dummy >> .env
           echo CLIENT_SECRET=dummy >> .env
@@ -141,9 +138,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.x'  # Use the version of .NET that your project uses
-      - run: | 
-          cd ./dotnet/PropelOAuthExampleApp
-          dotnet restore
+      - run: |
           dotnet build
           dotnet tool install -g dotnet-format
           dotnet format --check
