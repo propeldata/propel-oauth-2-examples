@@ -121,9 +121,8 @@ jobs:
         with:
           version: latest
           working-directory: ./golang
-      - run: |
-          go test
-          working-directory: ./golang
+      - run: go test
+        working-directory: ./golang
 
   dotnet:
     name: Lint and Test .NET
@@ -143,6 +142,7 @@ jobs:
         with:
           dotnet-version: '6.x'  # Use the version of .NET that your project uses
       - run: |
+          dotnet restore ./PropelOAuthExample.sln
           dotnet build
           dotnet tool install -g dotnet-format
           dotnet format --check
