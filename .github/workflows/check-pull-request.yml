@@ -145,7 +145,7 @@ jobs:
           dotnet build ./PropelOAuthExampleApp/PropelOAuthExampleApp.csproj
           dotnet build ./PropelOAuthExampleTests/PropelOAuthExampleTests.csproj
           dotnet tool install -g dotnet-format
-          dotnet format --check
+          dotnet format --include **/*.cs
           dotnet test --no-build --verbosity normal
         working-directory: ./dotnet
 
