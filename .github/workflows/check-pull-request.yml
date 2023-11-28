@@ -168,7 +168,7 @@ jobs:
           java-version: '16'
           distribution: 'adopt'
           cache: maven
-        run: |
+      - run: |
           mvn compile
           mvn exec:java -Dexec.mainClass="com.example.OAuthTokenFetcher"
         working-directory: ./java
