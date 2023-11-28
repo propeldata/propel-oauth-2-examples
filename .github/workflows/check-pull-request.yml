@@ -18,10 +18,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: | 
           cd ./javascript
-          pwd
-      - run: npm install
-      - run: npm run lint  # Your package.json should define a "lint" script
-      - run: npm test
+          npm install
+          npm run lint
+          npm test
 
   typescript:
     name: Lint and Test TypeScript
@@ -35,10 +34,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd ./typescript
-      - run: npm install
-      - run: npm run lint  # Your package.json should define a "lint" script for TypeScript
-      - run: npm test
+      - run: | 
+          cd ./typescript
+          npm install
+          npm run lint  # Your package.json should define a "lint" script for TypeScript
+          npm test
 
   python:
     name: Lint and Test Python
@@ -53,12 +53,12 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - run: cd ./python
       - run: | 
+          cd ./python
           pip install flake8 pytest
           pip install -r requirements.txt
-      - run: flake8 .  # Adjust this command based on how your project is structured
-      - run: pytest
+          flake8 .
+          pytest
 
   golang:
     name: Lint and Test Go
@@ -74,14 +74,17 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
           cache: false
-      - run: cd ./golang
-      - run: go get -v -t -d ./...
-      - run: go build -v ./...
+      - run: | 
+          cd ./golang
+          go get -v -t -d ./...
+          go build -v ./...
       - name: Run Linter
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
-      - run: go test -v ./...
+      - run: |
+          cd ./golang
+          go test -v ./...
 
   dotnet:
     name: Lint and Test .NET
@@ -92,9 +95,10 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.x'  # Use the version of .NET that your project uses
-      - run: cd ./dotnet
-      - run: dotnet restore
-      - run: dotnet build
-      - run: dotnet tool install -g dotnet-format
-      - run: dotnet format --check
-      - run: dotnet test --no-build --verbosity normal
+      - run: | 
+          cd ./dotnet
+          dotnet restore
+          dotnet build
+          dotnet tool install -g dotnet-format
+          dotnet format --check
+          dotnet test --no-build --verbosity normal
