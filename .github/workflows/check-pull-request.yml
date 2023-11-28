@@ -148,3 +148,30 @@ jobs:
           dotnet format --check
           dotnet test --no-build --verbosity normal
         working-directory: ./dotnet
+
+  java:
+    name: Lint and Test Java
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          touch .env
+          echo CLIENT_ID=dummy >> .env
+          echo CLIENT_SECRET=dummy >> .env
+          echo TOKEN_HOST=dummy >> .env
+          echo TOKEN_PATH=dummy >> .env
+        working-directory: ./java
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Compile Java
+        run: |
+          mvn compile
+          mvn exec:java -Dexec.mainClass="com.example.OAuthTokenFetcher"
+        working-directory: ./java
+
+
