@@ -165,10 +165,9 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: '16'
+          distribution: 'adopt'
           cache: maven
-      - name: Compile Java
         run: |
           mvn compile
           mvn exec:java -Dexec.mainClass="com.example.OAuthTokenFetcher"
