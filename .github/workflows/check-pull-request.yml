@@ -130,6 +130,8 @@ jobs:
           echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
           echo TOKEN_HOST=https://auth.us-east-2.propeldata.com >> .env
           echo TOKEN_PATH=/oauth2/token >> .env
+          pwd
+          cat .env
         working-directory: ./dotnet/PropelOAuthExampleApp
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
