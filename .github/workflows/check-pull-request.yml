@@ -121,18 +121,13 @@ jobs:
   dotnet:
     name: Lint and Test .NET
     runs-on: ubuntu-latest
+    env:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      TOKEN_HOST: https://auth.us-east-2.propeldata.com
+      TOKEN_PATH: /oauth2/token
     steps:
       - uses: actions/checkout@v4
-      - name: Generate .env file
-        run: |
-          touch .env
-          echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
-          echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
-          echo TOKEN_HOST=https://auth.us-east-2.propeldata.com >> .env
-          echo TOKEN_PATH=/oauth2/token >> .env
-          pwd
-          cat .env
-        working-directory: ./dotnet/PropelOAuthExampleApp
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
