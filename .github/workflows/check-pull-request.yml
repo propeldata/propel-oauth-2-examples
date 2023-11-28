@@ -16,7 +16,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd javascript/
+      - run: | 
+          cd ./javascript
+          pwd
       - run: npm install
       - run: npm run lint  # Your package.json should define a "lint" script
       - run: npm test
@@ -33,7 +35,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd typescript/
+      - run: cd ./typescript
       - run: npm install
       - run: npm run lint  # Your package.json should define a "lint" script for TypeScript
       - run: npm test
@@ -51,7 +53,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - run: cd python/
+      - run: cd ./python
       - run: | 
           pip install flake8 pytest
           pip install -r requirements.txt
@@ -72,7 +74,7 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
           cache: false
-      - run: cd golang/
+      - run: cd ./golang
       - run: go get -v -t -d ./...
       - run: go build -v ./...
       - name: Run Linter
@@ -90,7 +92,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.x'  # Use the version of .NET that your project uses
-      - run: cd dotnet/
+      - run: cd ./dotnet
       - run: dotnet restore
       - run: dotnet build
       - run: dotnet tool install -g dotnet-format
