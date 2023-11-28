@@ -142,9 +142,8 @@ jobs:
         with:
           dotnet-version: '6.x'  # Use the version of .NET that your project uses
       - run: |
-          dotnet restore ./PropelOAuthExample.sln
-          dotnet build ./PropelOAuthExampleApp\PropelOAuthExampleApp.csproj
-          dotnet build ./PropelOAuthExampleTests\PropelOAuthExampleTests.csproj
+          dotnet build ./PropelOAuthExampleApp/PropelOAuthExampleApp.csproj
+          dotnet build ./PropelOAuthExampleTests/PropelOAuthExampleTests.csproj
           dotnet tool install -g dotnet-format
           dotnet format --check
           dotnet test --no-build --verbosity normal
