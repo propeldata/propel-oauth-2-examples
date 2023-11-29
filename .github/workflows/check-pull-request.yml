@@ -1,0 +1,167 @@
+name: check-pull-request
+
+on:
+  pull_request:
+
+jobs:
+  javascript:
+    name: Lint and Test JavaScript
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ '20.x' ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          touch .env
+          echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
+          echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
+          echo TOKEN_HOST=https://auth.us-east-2.propeldata.com >> .env
+          echo TOKEN_PATH=/oauth2/token >> .env
+        working-directory: ./javascript
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: | 
+          npm install
+          npm run lint
+          npm test
+        working-directory: ./javascript
+
+  typescript:
+    name: Lint and Test TypeScript
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ '20.x' ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          touch .env
+          echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
+          echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
+          echo TOKEN_HOST=https://auth.us-east-2.propeldata.com >> .env
+          echo TOKEN_PATH=/oauth2/token >> .env
+        working-directory: ./typescript
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: | 
+          npm install
+          npm run lint
+          npm test
+        working-directory: ./typescript
+
+  python:
+    name: Lint and Test Python
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.12" ]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          touch .env
+          echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
+          echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
+          echo TOKEN_HOST=https://auth.us-east-2.propeldata.com >> .env
+          echo TOKEN_PATH=/oauth2/token >> .env
+        working-directory: ./python
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: |
+          pip install flake8 pytest
+          pip install -r requirements.txt
+          flake8 .
+          pytest
+        working-directory: ./python
+
+  golang:
+    name: Lint and Test Go
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [ '1.21.x' ]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          touch .env
+          echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
+          echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
+          echo TOKEN_HOST=https://auth.us-east-2.propeldata.com >> .env
+          echo TOKEN_PATH=/oauth2/token >> .env
+        working-directory: ./golang
+      - name: Setup Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+          cache: false
+      - run: | 
+          go get -v -t -d ./...
+          go build -v ./...
+        working-directory: ./golang
+      - name: Run Linter
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+          working-directory: ./golang
+      - run: go test
+        working-directory: ./golang
+
+  dotnet:
+    name: Lint and Test .NET
+    runs-on: ubuntu-latest
+    env:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      TOKEN_HOST: https://auth.us-east-2.propeldata.com
+      TOKEN_PATH: /oauth2/token
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.x'
+      - run: |
+          dotnet build ./PropelOAuthExampleApp/PropelOAuthExampleApp.csproj
+          dotnet build ./PropelOAuthExampleTests/PropelOAuthExampleTests.csproj
+          dotnet tool install -g dotnet-format
+          dotnet format --include **/*.cs
+          dotnet test --no-build --verbosity normal
+        working-directory: ./dotnet
+
+  java:
+    name: Lint and Test Java
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate .env file
+        run: |
+          touch .env
+          echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
+          echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
+          echo TOKEN_HOST=https://auth.us-east-2.propeldata.com >> .env
+          echo TOKEN_PATH=/oauth2/token >> .env
+        working-directory: ./java
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: maven
+      - run: |
+          mvn compile
+          mvn exec:java -Dexec.mainClass="com.example.OAuthTokenFetcher"
+        working-directory: ./java
+
+

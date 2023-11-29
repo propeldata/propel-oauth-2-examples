@@ -1,6 +1,6 @@
 const { ClientCredentials } = require('simple-oauth2');
 
-async function getToken() {
+async function getToken () {
   const config = {
     client: {
       id: process.env.CLIENT_ID,
@@ -24,4 +24,3 @@ async function getToken() {
 }
 
 module.exports = { getToken };
-
